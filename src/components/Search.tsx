@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Commit from './Commit';
 import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Search } from 'react-bootstrap-icons';
 
-const Search:React.FC = () => {
+const SearchBar:React.FC = () => {
 
     return(
          <div className = "App">
             <Form>
                 <InputGroup>
                     <Form.Control type="text" placeholder= "your-repository-name"/>
-                    <Button></Button>
+                    <Button><Search/></Button>
                 </InputGroup>
             </Form>
          </div>
     )
 }
-export default Search;
+export default SearchBar;
