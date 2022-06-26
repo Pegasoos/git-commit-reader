@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 const SearchBar:React.FC = () => {
+
+    useEffect(() => {
+        loadSearch();
+    }, []);
+
+    const loadSearch = () => {
+        console.log("Test works");
+    }
 
     interface gitSearchState {
         searchInput: string;
