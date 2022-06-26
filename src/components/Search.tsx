@@ -4,15 +4,24 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 const SearchBar:React.FC = () => {
-
+    //useEffect hook to make api call for project git information on component mounting
     useEffect(() => {
         loadSearch();
     }, []);
 
-    const loadSearch = () => {
-        console.log("Test works");
+    const loadSearch = async ():Promise<void> => {
+        try{
+        const call:Response = await fetch('https://api.github.com/repos/Pegasoos/git-commit-reader/commits', {
+            headers: {'Content-Type': 'application/json'}
+        })
+        const sortedCall:JSON[] = await call.json();
+        console.log(sortedCall)
+        }
+        catch(err){
+            console.log(err);
+        }
     }
-
+    //interface to define type for searchState hook
     interface gitSearchState {
         searchInput: string;
     }
