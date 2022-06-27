@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
+import apiCommit from '../types/apiCommit'
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
@@ -9,13 +10,16 @@ const SearchBar:React.FC = () => {
         loadSearch();
     }, []);
 
+    const [gitProjectState, setGitProjectState] = useState<Array<apiCommit>>([]);
+
     const loadSearch = async ():Promise<void> => {
         try{
         const call:Response = await fetch('https://api.github.com/repos/Pegasoos/git-commit-reader/commits', {
             headers: {'Content-Type': 'application/json'}
         })
-        const sortedCall:JSON[] = await call.json();
-        console.log(sortedCall)
+        const sortedCall:apiCommit[] = await call.json();
+        setGitProjectState(sortedCall);
+        console.log(sortedCall);
         }
         catch(err){
             console.log(err);
@@ -25,7 +29,7 @@ const SearchBar:React.FC = () => {
     interface gitSearchState {
         searchInput: string;
     }
-
+    // creating state hook to store user input from search form
     const [searchState, setSearchState] = useState<gitSearchState>({searchInput:""});
 
     const handleInputChange:React.FormEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
