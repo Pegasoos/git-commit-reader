@@ -3,6 +3,12 @@ import apiCommit from '../types/apiCommit';
 import { Row, Col, Accordion } from 'react-bootstrap';
 
 const Commit:React.FC<apiCommit> = (props:apiCommit) => {
+
+    //splits then deletes first line so Accordian
+    //can display only the extendd message
+    const messageArray:string[] = props.commit.message.split(/\n/);
+    messageArray.shift();
+
     return(
          <Row>
             <Col>
@@ -13,10 +19,10 @@ const Commit:React.FC<apiCommit> = (props:apiCommit) => {
                 <Accordion defaultActiveKey='0'>
                         <Accordion.Item eventKey='0'>
                             <Accordion.Header>
-                                {props.commit.message.split(/\n/)[0]}
+                            {props.commit.message.split(/\n/)[0]}
                             </Accordion.Header>
                             <Accordion.Body>
-                                {props.commit.message}
+                            {messageArray}
                             </Accordion.Body>
                         </Accordion.Item>
                 </Accordion>
