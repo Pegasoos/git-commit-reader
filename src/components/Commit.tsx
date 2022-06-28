@@ -1,11 +1,12 @@
 import React from 'react';
 import apiCommit from '../types/apiCommit';
 import { Row, Col, Accordion } from 'react-bootstrap';
+import formatDate from '../utils/helpers';
 
 const Commit:React.FC<apiCommit> = (props:apiCommit) => {
 
     //splits then deletes first line so Accordian
-    //can display only the extendd message
+    //can display only the extended message
     const messageArray:string[] = props.commit.message.split(/\n/);
     messageArray.shift();
 
@@ -13,7 +14,7 @@ const Commit:React.FC<apiCommit> = (props:apiCommit) => {
          <Row>
             <Col>
                 <img src = {props.author.avatar_url} alt="Profile For a Github Profile"/>
-                <p>commit authored by {props.author.login} on {props.commit.author.date}</p>
+                <p>commit authored by {props.author.login} at {formatDate(props.commit.author.date)}</p>
             </Col>
             <Col>
                 <Accordion>
