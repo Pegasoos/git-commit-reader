@@ -52,7 +52,7 @@ const SearchBar:React.FC = () => {
             <Stack gap={2}>
                 {
                 gitProjectState.map((commit) => {
-                    return <Commit {...commit}/>;
+                    return <Commit {...commit} key={commit.sha}/>;
                 })
                 }
             </Stack>
