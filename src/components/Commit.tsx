@@ -16,7 +16,7 @@ const Commit:React.FC<apiCommit> = (props:apiCommit) => {
                 <p>commit authored by {props.author.login} on {props.commit.author.date}</p>
             </Col>
             <Col>
-                <Accordion defaultActiveKey='0'>
+                <Accordion>
                         <Accordion.Item eventKey='0'>
                             <Accordion.Header>
                             {props.commit.message.split(/\n/)[0]}
