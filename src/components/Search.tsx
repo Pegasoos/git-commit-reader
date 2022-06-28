@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit'
-import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Form, InputGroup, Button, Stack } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 const SearchBar:React.FC = () => {
@@ -46,10 +46,16 @@ const SearchBar:React.FC = () => {
                     <Form.Control type="text" placeholder= "your-repository-name" id="git-search"
                      name="searchInput" onChange={handleInputChange}
                      />
-
                     <Button className="button"><Search/></Button>
                 </InputGroup>
             </Form>
+            <Stack gap={2}>
+                {
+                gitProjectState.map((commit) => {
+                    return <Commit {...commit}/>;
+                })
+                }
+            </Stack>
          </div>
     )
 }
