@@ -30,21 +30,31 @@ const SearchBar:React.FC = () => {
         searchInput: string;
     }
     // creating state hook to store user input from search form
-    const [searchState, setSearchState] = useState<gitSearchState>({searchInput:""});
+    const [profileSearchState, setProfileSearchState] = useState<gitSearchState>({searchInput:""});
+    const [repositorySearchState, setRepositorySearchState] = useState<gitSearchState>({searchInput:""});
 
     const handleInputChange:React.FormEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const { value } = e.target;
-        setSearchState({searchInput:value});
-        console.log(searchState);
+        if(e.target.name === "profileSearchInput"){
+            setProfileSearchState({searchInput:value});
+            console.log(profileSearchState);
+        }
+        if(e.target.name === "repositorySearchInput"){
+            setRepositorySearchState({searchInput:value})
+            console.log(repositorySearchState);
+        }
     }
 
     return(
          <div className = "App">
             <Form>
                 <InputGroup>
-                    <Form.Control type="text" placeholder= "your-repository-name" id="git-search"
-                     name="searchInput" onChange={handleInputChange}
+                    <Form.Control type="text" placeholder= "your-github-profile-name" id="git-search"
+                     name="profileSearchInput" onChange={handleInputChange}
+                     />
+                     <Form.Control type="text" placeholder= "your-repository-name" id="git-search"
+                     name="repositorySearchInput" onChange={handleInputChange}
                      />
                     <Button className="button"><Search/></Button>
                 </InputGroup>
