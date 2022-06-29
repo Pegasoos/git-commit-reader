@@ -25,6 +25,18 @@ const SearchBar:React.FC = () => {
             console.log(err);
         }
     }
+
+    const clickSearch = async (e:React.MouseEvent):Promise<void> => {
+        e.preventDefault();
+        console.log(profileSearchState.searchInput.length);
+        console.log(repositorySearchState.searchInput.length);
+        const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repositorySearchState.searchInput}/commits`, {
+            headers: {'Content-Type' : 'application/json'}
+        })
+        const sortedCall:apiCommit[] = await call.json();
+        setGitProjectState(sortedCall);
+        console.log('Success!');
+    }
     //interface to define type for searchState hook
     interface gitSearchState {
         searchInput: string;
@@ -56,7 +68,7 @@ const SearchBar:React.FC = () => {
                      <Form.Control type="text" placeholder= "your-repository-name" id="git-search"
                      name="repositorySearchInput" onChange={handleInputChange}
                      />
-                    <Button className="button"><Search/></Button>
+                    <Button className="button" onClick={clickSearch}><Search onClick={clickSearch}/></Button>
                 </InputGroup>
             </Form>
             <Stack gap={2}>
