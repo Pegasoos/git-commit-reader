@@ -72,6 +72,7 @@ const SearchBar:React.FC = () => {
                 </InputGroup>
             </Form>
             <Stack gap={2}>
+                <h1>{gitProjectState[0].html_url.split("/")[4]}</h1>
                 {
                 gitProjectState.map((commit) => {
                     return <Commit {...commit} key={commit.sha}/>;
