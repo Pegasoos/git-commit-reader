@@ -30,7 +30,9 @@ const SearchBar:React.FC = () => {
         e.preventDefault();
         console.log(profileSearchState.searchInput.length);
         console.log(repositorySearchState.searchInput.length);
-        const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repositorySearchState.searchInput}/commits`, {
+        //Github repos do not use spaces, replace them with the default github spacing(hyphons)
+        const repoString:string = repositorySearchState.searchInput.replace(/[" "]/g, "-");
+        const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repoString}/commits`, {
             headers: {'Content-Type' : 'application/json'}
         })
         const sortedCall:apiCommit[] = await call.json();
