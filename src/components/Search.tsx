@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit'
-import { Form, InputGroup, Button, Stack } from 'react-bootstrap';
+import { Form, InputGroup, Button, Stack, Alert } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
+import { render } from '@testing-library/react';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -26,15 +27,20 @@ const SearchBar:React.FC = () => {
         }
     }
 
+    const[alertState, setAlertState] = useState({showAlert: false});
+
     const clickSearch = async (e:React.MouseEvent):Promise<void> => {
         e.preventDefault();
-        console.log(profileSearchState.searchInput.length);
-        console.log(repositorySearchState.searchInput.length);
         //Github repos do not use spaces, replace them with the default github spacing(hyphons)
         const repoString:string = repositorySearchState.searchInput.replace(/[" "]/g, "-");
         const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repoString}/commits`, {
             headers: {'Content-Type' : 'application/json'}
         })
+        if(!call.ok) {
+            setAlertState({showAlert:true});
+            console.log(alertState.showAlert)
+            return;
+        };
         const sortedCall:apiCommit[] = await call.json();
         setGitProjectState(sortedCall);
         console.log('Success!');
@@ -74,6 +80,20 @@ const SearchBar:React.FC = () => {
                 </InputGroup>
             </Form>
             <Stack gap={2}>
+                <div id="error">
+                    {
+                        alertState.showAlert ?
+                        <Alert variant="danger" dismissible onClose={() => setAlertState({showAlert:false})}>
+                            <Alert.Heading>
+                                No Repositories Found
+                            </Alert.Heading>
+                            <p>
+                                Have you checked your spelling?
+                            </p>
+                        </Alert>
+                        :null
+                    }
+                </div>
                 <h1>{gitProjectState.length > 0 ? gitProjectState[0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
                 gitProjectState.map((commit) => {
