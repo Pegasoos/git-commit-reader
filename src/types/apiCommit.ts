@@ -54,9 +54,10 @@ export default interface apiCommit {
     html_url: string,
     node_id: string,
     parents:[{
-        html_url: string,sha: string, url: string
+        html_url: string, sha: string, url: string
         }
     ],
     sha: string,
-    url: string
-}
+    url: string,
+    latest: boolean
+};
