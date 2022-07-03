@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
-import apiCommit from '../types/apiCommit'
+import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-import { render } from '@testing-library/react';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -43,6 +42,7 @@ const SearchBar:React.FC = () => {
         };
         const sortedCall:apiCommit[] = await call.json();
         setGitProjectState(sortedCall);
+        console.log(sortedCall)
         console.log('Success!');
     }
     //interface to define type for searchState hook
@@ -64,6 +64,15 @@ const SearchBar:React.FC = () => {
             setRepositorySearchState({searchInput:value})
             console.log(repositorySearchState);
         }
+    }
+
+    const spliceChunk = (arr:Array<apiCommit>) => {
+        const chunkedArray:Array<Array<apiCommit>> = [];
+        while(arr.length > 0) {
+            const chunk:Array<apiCommit>= arr.splice(0,5);
+            chunkedArray.push(chunk);
+        }
+        return chunkedArray
     }
 
     return(
@@ -88,7 +97,7 @@ const SearchBar:React.FC = () => {
                                 No Repositories Found
                             </Alert.Heading>
                             <p>
-                                Have you checked your spelling?
+                                Have you checked your spelling for both the profile and repository?
                             </p>
                         </Alert>
                         :null
