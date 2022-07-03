@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
-import { Form, InputGroup, Button, Stack, Alert } from 'react-bootstrap';
+import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 const SearchBar:React.FC = () => {
@@ -14,7 +14,7 @@ const SearchBar:React.FC = () => {
 
     const loadSearch = async ():Promise<void> => {
         try{
-        const call:Response = await fetch('https://api.github.com/repos/Pegasoos/git-commit-reader/commits', {
+        const call:Response = await fetch('https://api.github.com/repos/Pegasoos/git-commit-reader/commits?per_page=100', {
             headers: {'Content-Type': 'application/json'}
         })
         const sortedCall:apiCommit[] = await call.json();
@@ -32,8 +32,11 @@ const SearchBar:React.FC = () => {
         e.preventDefault();
         //Github repos do not use spaces, replace them with the default github spacing(hyphons)
         const repoString:string = repositorySearchState.searchInput.replace(/[" "]/g, "-");
-        const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repoString}/commits`, {
-            headers: {'Content-Type' : 'application/json'}
+        const call:Response = await fetch(`https://api.github.com/repos/${profileSearchState.searchInput}/${repoString}/commits?per_page=100`, {
+            headers: {
+                    'Content-Type' : 'application/json',
+                    'accept': 'application/vnd.github+json'
+                     }
         })
         if(!call.ok) {
             setAlertState({showAlert:true});
