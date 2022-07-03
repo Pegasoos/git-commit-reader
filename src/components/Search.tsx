@@ -3,6 +3,7 @@ import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
+import PaginationItem from 'react-bootstrap/lib/PaginationItem';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -11,6 +12,15 @@ const SearchBar:React.FC = () => {
     }, []);
 
     const [gitProjectState, setGitProjectState] = useState<Array<apiCommit>>([]);
+
+    const sliceChunk = (arr:Array<apiCommit>) => {
+        const chunkedArray:Array<Array<apiCommit>> = [];
+        for(let i = 0; i < arr.length; i += 5){
+            const chunk:Array<apiCommit>= arr.slice(i,i+5);
+            chunkedArray.push(chunk);
+        }
+        return chunkedArray
+    }
 
     const loadSearch = async ():Promise<void> => {
         try{
@@ -45,7 +55,7 @@ const SearchBar:React.FC = () => {
         };
         const sortedCall:apiCommit[] = await call.json();
         setGitProjectState(sortedCall);
-        console.log(sortedCall)
+        console.log(sliceChunk(sortedCall))
         console.log('Success!');
     }
     //interface to define type for searchState hook
@@ -69,13 +79,16 @@ const SearchBar:React.FC = () => {
         }
     }
 
-    const spliceChunk = (arr:Array<apiCommit>) => {
-        const chunkedArray:Array<Array<apiCommit>> = [];
-        while(arr.length > 0) {
-            const chunk:Array<apiCommit>= arr.splice(0,5);
-            chunkedArray.push(chunk);
-        }
-        return chunkedArray
+    // code for rendering pagination
+    let active:number = 1;
+    let pages:Array<any> = [];
+
+    for(let number:number = 1; number <= sliceChunk(gitProjectState).length;number++) {
+        pages.push(
+        <Pagination.Item key = {number} active = {number === active}>
+            {number}
+        </Pagination.Item>
+        )
     }
 
     return(
@@ -113,6 +126,9 @@ const SearchBar:React.FC = () => {
                 })
                 }
             </Stack>
+            <Pagination>
+                {pages}
+            </Pagination>
          </div>
     )
 }
