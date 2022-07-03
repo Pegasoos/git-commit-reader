@@ -11,7 +11,7 @@ const SearchBar:React.FC = () => {
         loadSearch();
     }, []);
 
-    const [gitProjectState, setGitProjectState] = useState<Array<apiCommit>>([]);
+    const [gitProjectState, setGitProjectState] = useState<Array<Array<apiCommit>>>([]);
 
     const sliceChunk = (arr:Array<apiCommit>) => {
         const chunkedArray:Array<Array<apiCommit>> = [];
@@ -28,8 +28,8 @@ const SearchBar:React.FC = () => {
             headers: {'Content-Type': 'application/json'}
         })
         const sortedCall:apiCommit[] = await call.json();
-        setGitProjectState(sortedCall);
-        console.log(sortedCall);
+        setGitProjectState(sliceChunk(sortedCall));
+        console.log(gitProjectState);
         }
         catch(err){
             console.log(err);
@@ -54,8 +54,8 @@ const SearchBar:React.FC = () => {
             return;
         };
         const sortedCall:apiCommit[] = await call.json();
-        setGitProjectState(sortedCall);
-        console.log(sliceChunk(sortedCall))
+        setGitProjectState(sliceChunk(sortedCall));
+        console.log(gitProjectState)
         console.log('Success!');
     }
     //interface to define type for searchState hook
@@ -83,7 +83,7 @@ const SearchBar:React.FC = () => {
     let active:number = 1;
     let pages:Array<any> = [];
 
-    for(let number:number = 1; number <= sliceChunk(gitProjectState).length;number++) {
+    for(let number:number = 1; number <= gitProjectState.length;number++) {
         pages.push(
         <Pagination.Item key = {number} active = {number === active}>
             {number}
@@ -116,14 +116,15 @@ const SearchBar:React.FC = () => {
                                 Have you checked your spelling for both the profile and repository?
                             </p>
                         </Alert>
-                        :null
+                        :null 
                     }
                 </div>
-                <h1>{gitProjectState.length > 0 ? gitProjectState[0].html_url.split("/")[4]:"Waiting..."}</h1>
+                <h1>{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
-                gitProjectState.map((commit) => {
+                gitProjectState.length > 0 ?
+                gitProjectState[0].map((commit) => {
                     return <Commit {...commit} key={commit.sha}/>;
-                })
+                }):"Waiting"
                 }
             </Stack>
             <Pagination>
