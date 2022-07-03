@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { AnchorHTMLAttributes, useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
@@ -80,12 +80,18 @@ const SearchBar:React.FC = () => {
     }
 
     // code for rendering pagination
-    let active:number = 1;
+    const [pageState, setPageState] = useState(1)
     let pages:Array<any> = [];
+
+    const changeActivePage = (e:React.MouseEvent) => {
+        const pageNumber = e.target as HTMLAnchorElement;
+        setPageState(parseInt(pageNumber.text))
+    };
+
 
     for(let number:number = 1; number <= gitProjectState.length;number++) {
         pages.push(
-        <Pagination.Item key = {number} active = {number === active}>
+        <Pagination.Item key = {number} active = {number === pageState} onClick={changeActivePage}>
             {number}
         </Pagination.Item>
         )
@@ -122,7 +128,7 @@ const SearchBar:React.FC = () => {
                 <h1>{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
                 gitProjectState.length > 0 ?
-                gitProjectState[0].map((commit) => {
+                gitProjectState[pageState-1].map((commit) => {
                     return <Commit {...commit} key={commit.sha}/>;
                 }):"Waiting"
                 }
