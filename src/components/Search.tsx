@@ -95,7 +95,7 @@ const SearchBar:React.FC = () => {
     for(let number:number = 1; number <= gitProjectState.length;number++) {
         pages.push(
         <Pagination.Item key = {number} active = {number === pageState} onClick={changeActivePage}
-         style={{pointerEvents: number === pageState?'none':'auto'}}>
+         style={{pointerEvents: number === pageState?'none':'auto'}} href={"#top"}>
             {number}
         </Pagination.Item>
         )
@@ -129,7 +129,7 @@ const SearchBar:React.FC = () => {
                         :null 
                     }
                 </div>
-                <h1 className="project-name">{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
+                <h1 id="top" className="project-name">{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
                 gitProjectState.length > 0 ?
                 gitProjectState[pageState-1].map((commit, i) => {
