@@ -1,6 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&display=swap");
+@import url("https://use.typekit.net/tzw6izt.css");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 .App {
   text-align: center;
 }
 h1 {
   padding: 1em 0 0 0;
+  font-family: 'Roboto Serif', serif;
+}
+h4 {
+  font-family: 'Input Mono', sans-serif;
+}
+.heading-icon {
+  margin-top: -7px;
+}
+.sub-heading {
+  margin-bottom: 35px;
+  margin-top: 15px;
+}
+.thin-underline {
+border-bottom: solid black 2px;
+}
+.thick-underline {
+  border-bottom: solid black 3px;
 }
