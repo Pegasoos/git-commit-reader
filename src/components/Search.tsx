@@ -4,6 +4,7 @@ import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import './Search.css';
+import { NONAME } from 'dns';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -93,7 +94,8 @@ const SearchBar:React.FC = () => {
     //Code to render Pagination based on number of array cunks in state
     for(let number:number = 1; number <= gitProjectState.length;number++) {
         pages.push(
-        <Pagination.Item key = {number} active = {number === pageState} onClick={changeActivePage}>
+        <Pagination.Item key = {number} active = {number === pageState} onClick={changeActivePage}
+         style={{pointerEvents: number === pageState?'none':'auto'}}>
             {number}
         </Pagination.Item>
         )
