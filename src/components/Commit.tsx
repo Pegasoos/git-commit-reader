@@ -1,6 +1,6 @@
 import React from 'react';
 import apiCommit from '../types/apiCommit';
-import { Row, Col, Accordion } from 'react-bootstrap';
+import { Row, Col, Accordion, Badge } from 'react-bootstrap';
 import formatDate from '../utils/helpers';
 
 const Commit:React.FC<apiCommit> = (props:apiCommit) => {
@@ -14,7 +14,7 @@ const Commit:React.FC<apiCommit> = (props:apiCommit) => {
          <Row>
             <Col>
                 <img src = {props.author.avatar_url} alt="Profile For a Github Profile"/>
-                <p>commit authored by {props.author.login} at {formatDate(props.commit.author.date)}</p>
+                <p><>{props.latest ? <Badge bg="success">Latest</Badge> : console.log("")}</> commit authored by {props.author.login} at {formatDate(props.commit.author.date)}</p>
             </Col>
             <Col>
                 <Accordion>
