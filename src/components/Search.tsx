@@ -3,6 +3,7 @@ import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
+import './Search.css';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -103,10 +104,10 @@ const SearchBar:React.FC = () => {
             <Form>
                 <InputGroup>
                     <Form.Control type="text" placeholder= "your-github-profile-name" id="git-search"
-                     name="profileSearchInput" onChange={handleInputChange}
+                     name="profileSearchInput" onChange={handleInputChange} className="search-shadow"
                      />
                      <Form.Control type="text" placeholder= "your-repository-name" id="git-search"
-                     name="repositorySearchInput" onChange={handleInputChange}
+                     name="repositorySearchInput" onChange={handleInputChange} 
                      />
                     <Button className="button" onClick={clickSearch}><Search onClick={clickSearch}/></Button>
                 </InputGroup>
@@ -126,7 +127,7 @@ const SearchBar:React.FC = () => {
                         :null 
                     }
                 </div>
-                <h1>{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
+                <h1 className="project-name">{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
                 gitProjectState.length > 0 ?
                 gitProjectState[pageState-1].map((commit, i) => {
@@ -134,9 +135,9 @@ const SearchBar:React.FC = () => {
                 }):"Waiting"
                 }
             </Stack>
-            <Pagination>
-                {pages}
-            </Pagination>
+                <Pagination>
+                    {pages}
+                </Pagination>
          </div>
     )
 }
