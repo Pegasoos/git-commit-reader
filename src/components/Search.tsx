@@ -135,9 +135,11 @@ const SearchBar:React.FC = () => {
                 }):"Waiting"
                 }
             </Stack>
+            <div className="page-div">
                 <Pagination>
                     {pages}
                 </Pagination>
+            </div>
          </div>
     )
 }
