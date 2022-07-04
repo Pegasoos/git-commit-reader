@@ -1,9 +1,8 @@
-import React, { AnchorHTMLAttributes, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
 import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-import PaginationItem from 'react-bootstrap/lib/PaginationItem';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -12,7 +11,7 @@ const SearchBar:React.FC = () => {
     }, []);
 
     const [gitProjectState, setGitProjectState] = useState<Array<Array<apiCommit>>>([]);
-
+    // function to split api results into arrays of five commits each
     const sliceChunk = (arr:Array<apiCommit>) => {
         const chunkedArray:Array<Array<apiCommit>> = [];
         for(let i = 0; i < arr.length; i += 5){
@@ -21,7 +20,7 @@ const SearchBar:React.FC = () => {
         }
         return chunkedArray
     }
-
+    // function to search api for this project's repository
     const loadSearch = async ():Promise<void> => {
         try{
         const call:Response = await fetch('https://api.github.com/repos/Pegasoos/git-commit-reader/commits?per_page=100', {
@@ -49,6 +48,7 @@ const SearchBar:React.FC = () => {
                      }
         })
         if(!call.ok) {
+            // if call does not work, display Bootstrap Alert message
             setAlertState({showAlert:true});
             console.log(alertState.showAlert)
             return;
@@ -80,7 +80,8 @@ const SearchBar:React.FC = () => {
     }
 
     // code for rendering pagination
-    const [pageState, setPageState] = useState(1)
+    const [pageState, setPageState] = useState<number>(1);
+
     let pages:Array<any> = [];
 
     const changeActivePage = (e:React.MouseEvent) => {
@@ -88,7 +89,7 @@ const SearchBar:React.FC = () => {
         setPageState(parseInt(pageNumber.text))
     };
 
-
+    //Code to render Pagination based on number of array cunks in state
     for(let number:number = 1; number <= gitProjectState.length;number++) {
         pages.push(
         <Pagination.Item key = {number} active = {number === pageState} onClick={changeActivePage}>
@@ -128,8 +129,8 @@ const SearchBar:React.FC = () => {
                 <h1>{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
                 {
                 gitProjectState.length > 0 ?
-                gitProjectState[pageState-1].map((commit) => {
-                    return <Commit {...commit} key={commit.sha}/>;
+                gitProjectState[pageState-1].map((commit, i) => {
+                    return <Commit {...commit} key={commit.sha} latest={i === 0 && pageState === 1}/>;
                 }):"Waiting"
                 }
             </Stack>
