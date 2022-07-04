@@ -9,8 +9,8 @@ const App:React.FC = () => {
   return (
     <Container>
       <div className="App">
-        <h1>Git <Github/> Commit <Github/> Search</h1>
-        <h4>Search For a Project on Github!</h4>
+        <h1><span className="thin-underline">Git</span> <Github className="heading-icon"/> Commit <Github className="heading-icon"/> Search</h1>
+        <h4 className="sub-heading">Search For a Project on <span className="thick-underline">Github</span>!</h4>
         <Row>
           <SearchBar />
         </Row>
