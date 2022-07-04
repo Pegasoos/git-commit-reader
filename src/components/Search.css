@@ -7,3 +7,9 @@
 .project-name {
     margin-bottom: 20px;
 }
+.page-div {
+    bottom: 0;
+    position: sticky;
+    display:flex;
+    justify-content: center;
+}
