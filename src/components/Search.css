@@ -1,0 +1,9 @@
+.form-control:link,.form-control:active, .form-control:hover, .form-control:focus, .form-control:visited {
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+    border-color: grey;
+}
+.project-name {
+    margin-bottom: 20px;
+}
