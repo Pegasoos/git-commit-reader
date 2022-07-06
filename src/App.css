@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&display=swap");
 @import url("https://use.typekit.net/tzw6izt.css");
 
+html {
+  position: relative;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+body {
+  margin:0;
+  padding: 0;
+}
 .App {
   text-align: center;
 }
@@ -23,4 +33,12 @@ border-bottom: solid black 2px;
 }
 .thick-underline {
   border-bottom: solid black 3px;
+}
+body {
+  background-image: -moz-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-image: -webkit-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-image: linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-position:cover;
+  background-repeat: repeat;
+  background-size: 100%;
 }
