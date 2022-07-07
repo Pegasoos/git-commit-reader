@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Commit from './Commit';
 import apiCommit from '../types/apiCommit';
-import { Form, InputGroup, Button, Stack, Alert, Pagination } from 'react-bootstrap';
+import { Form, InputGroup, Button, Stack, Alert, Pagination, Spinner } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import './Search.css';
-import { NONAME } from 'dns';
 
 const SearchBar:React.FC = () => {
     //useEffect hook to make api call for project git information on component mounting
@@ -129,12 +128,12 @@ const SearchBar:React.FC = () => {
                         :null 
                     }
                 </div>
-                <h1 id="top" className="project-name">{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:"Waiting..."}</h1>
+                <h1 id="top" className="project-name">{gitProjectState.length > 0 ? gitProjectState[0][0].html_url.split("/")[4]:<Spinner animation="border"/>}</h1>
                 {
                 gitProjectState.length > 0 ?
                 gitProjectState[pageState-1].map((commit, i) => {
                     return <Commit {...commit} key={commit.sha} latest={i === 0 && pageState === 1}/>;
-                }):"Waiting"
+                }):'Waiting'
                 }
             </Stack>
             <div className="page-div">
