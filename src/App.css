@@ -6,10 +6,18 @@ html {
   min-height: 100%;
   min-width: 100%;
 }
-
+p, h1, h4 {
+  color: white;
+}
 body {
   margin:0;
   padding: 0;
+  background-image: -moz-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-image: -webkit-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-image: linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
+  background-position:cover;
+  background-repeat: repeat;
+  background-size: 100%;
 }
 .App {
   text-align: center;
@@ -29,16 +37,8 @@ h4 {
   margin-top: 15px;
 }
 .thin-underline {
-border-bottom: solid black 2px;
+border-bottom: solid #66c0f6 2px;
 }
 .thick-underline {
-  border-bottom: solid black 3px;
-}
-body {
-  background-image: -moz-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
-  background-image: -webkit-linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
-  background-image: linear-gradient(to bottom, #1b2838, #2a475e, #66c0f4, #2a475e, #1b2838);
-  background-position:cover;
-  background-repeat: repeat;
-  background-size: 100%;
+  border-bottom: solid #66c0f6 3px;
 }
