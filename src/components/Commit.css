@@ -6,3 +6,9 @@
     border: solid 5px;
     border-image: linear-gradient(90deg, #1b2838, #66c0f4) 2 stretch;
 }
+.git-image {
+    border: solid 2px white;
+    border-radius: 50%;
+    width: 40%;
+    margin-bottom: 1em;
+}
