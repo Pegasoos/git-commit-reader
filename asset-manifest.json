@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Pegasoos.github.io/git-commit-reader/static/css/main.78c48198.css",
-    "main.js": "/Pegasoos.github.io/git-commit-reader/static/js/main.3c00bfb7.js",
-    "index.html": "/Pegasoos.github.io/git-commit-reader/index.html",
-    "main.78c48198.css.map": "/Pegasoos.github.io/git-commit-reader/static/css/main.78c48198.css.map",
-    "main.3c00bfb7.js.map": "/Pegasoos.github.io/git-commit-reader/static/js/main.3c00bfb7.js.map"
+    "main.css": "/git-commit-reader/static/css/main.78c48198.css",
+    "main.js": "/git-commit-reader/static/js/main.3c00bfb7.js",
+    "index.html": "/git-commit-reader/index.html",
+    "main.78c48198.css.map": "/git-commit-reader/static/css/main.78c48198.css.map",
+    "main.3c00bfb7.js.map": "/git-commit-reader/static/js/main.3c00bfb7.js.map"
   },
   "entrypoints": [
     "static/css/main.78c48198.css",
