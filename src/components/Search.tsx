@@ -103,7 +103,7 @@ const SearchBar:React.FC = () => {
     return(
          <div className = "App">
             <Form>
-                <InputGroup>
+                <InputGroup size="lg">
                     <Form.Control type="text" placeholder= "your-github-profile-name" id="git-search"
                      name="profileSearchInput" onChange={handleInputChange} className="search-shadow"
                      />
