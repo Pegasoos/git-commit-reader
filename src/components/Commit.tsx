@@ -12,7 +12,7 @@ const Commit:React.FC<apiCommit> = (props:apiCommit) => {
     messageArray.shift();
 
     return(
-         <Row>
+         <Row className ="commit-card">
             <Col>
                 <img src = {props.author.avatar_url} alt="Profile For a Github Profile"/>
                 <p><>{props.latest ? <Badge bg="success">Latest</Badge> : console.log("")}</> commit authored by <i>{props.author.login}</i> at {formatDate(props.commit.author.date)}</p>
