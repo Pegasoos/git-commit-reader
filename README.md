@@ -22,7 +22,7 @@
 ### 4. Ensure no processes are running on the localhost at Port 3000 by visiting http://localhost:3000. Run the start script by entering the command "npm start" or "yarn start" into your command line interpreter and executing it.
 ### 5. The application should open in your browser after in finishes compiling.
 ## Usage
-### Enter the name of the Github User into the first search form and the name of the repository into the second form, then ### press the search button to query the API and display results.
+### Enter the name of the Github User into the first search form and the name of the repository into the second form, then press the search button to query the API and display results.
 ## Contributing
 ### 
 ## Tests
