@@ -17,9 +17,9 @@
 ### The application can be used online here: https://pegasoos.github.io/git-commit-reader/#top
 ## Installation
 ### 1. Open the command line interpreter of your choice (powershell, terminal, etc.).
-### 2. Use your command line interpreter to navigate to the folder you wish to keep the application in using the command "cd ###    {the path to the folder goes here}".
-### 3. Use a package manager, such as npm or yarn, to install the necessary packages using the install command (Example: "npm ###    install" or "yarn install") into your command line interpreter and execute it by pressing the ENTER key.
-### 4. Ensure no processes are running on the localhost at Port 3000 by visiting http://localhost:3000. Run the start script  ###    by entering the command "npm start" or "yarn start" into your command line interpreter and executing it.
+### 2. Use your command line interpreter to navigate to the folder you wish to keep the application in using the command "cd {the path to the folder goes here}".
+### 3. Use a package manager, such as npm or yarn, to install the necessary packages using the install command (Example: "npm install" or "yarn install") into your command line interpreter and execute it by pressing the ENTER key.
+### 4. Ensure no processes are running on the localhost at Port 3000 by visiting http://localhost:3000. Run the start script by entering the command "npm start" or "yarn start" into your command line interpreter and executing it.
 ### 5. The application should open in your browser after in finishes compiling.
 ## Usage
 ### Enter the name of the Github User into the first search form and the name of the repository into the second form, then ### press the search button to query the API and display results.
